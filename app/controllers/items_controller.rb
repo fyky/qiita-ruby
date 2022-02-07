@@ -7,10 +7,18 @@ class ItemsController < ApplicationController
     # require 'uri'
 
     # params = URI.encode_www_form({created: >2022-1-31})
+    # 日付を仮定
     params = "2022-1-31"
-    uri = URI.parse("https://qiita.com/api/v2/items?page=10&per_page=10&query=created:>#{params}")
+    uri = URI.parse("https://qiita.com/api/v2/items?page=1&per_page=3&query=created:>#{params}")
     response = Net::HTTP.get_response(uri)
     result = JSON.parse(response.body)
+
+
+    # resultは配列　itemがたくさん入っている　
+    # 配列がなくなるまで繰り返し表示させる必要がある
+    # itemにはtitle,name,created_at,lgtm,tagsのセットが1つ入っている
+    @test = result
+
 
     # 1個目のみ
     @title = result[0]["title"]
@@ -18,16 +26,15 @@ class ItemsController < ApplicationController
     @created_at = result[0]["created_at"]
     @lgtm = result[0]["likes_count"]
     # 1個目のみ
-    @tag = result[0]["tags"]
+    @tags = result[0]["tags"]
 
-    @tag_array= []
-
-    # 配列で取得したい
-    @tag.each { |tag|
-      @tags = tag["name"]
-      @tag_array.append(@tags)
+    @tag_names= []
+    # each文で回したいので配列で取得する
+    @tags.each { |tag|
+      @tag_name = tag["name"]
+      @tag_names.append(@tag_name)
     }
-    p @tag_array
+    # p @tag_array
 
     # for i in @tag do
     #   @tag
