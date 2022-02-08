@@ -14,7 +14,7 @@
  *= require_self
  */
 @import "bootstrap";
-@import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Zen+Kaku+Gothic+Antique&display=swap");
 
 * {
   margin: 0;
@@ -23,20 +23,40 @@
 }
 
 body {
-  font-family: "Kosugi Maru", sans-serif;
+  font-family: "Alata", sans-serif;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+}
+
+a {
+  color: #a52a2a;
+  border: none;
+}
+
+a:hover {
+  color: #eee;
+  border: none;
+}
+
+a:visited {
+  color: black;
+  border: none;
 }
 
 .lgtm {
   display: inline-block;
   width: 100px;
-  height: 100px;
-  background-color: #333333;
-  border-radius: 50%;
+  height: 85px;
+  // background-color: #b0c4de;
+  background-image: image-url("lgtm.png");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  border: 3px solid green;
+  // border-radius: 50%;
   text-align: center;
   padding-top: 35px;
   margin-right: 30px;
   border: none;
-  color: white;
+  color: black;
   font-size: 25px;
 }
 

@@ -1,6 +1,6 @@
-<div class="container", style="background-color:#e6e6fa;">
+<div class="container">
 <h1>Qiita記事 LGTM数週間ランキング</h1>
-<p>集計期間<%= (Date.today-7).strftime("%Y年%-m月%-d日") %>から<%= (Date.today-1).strftime("%Y年%-m月%-d日") %>まで</p>
+<p>集計期間 : <%= (Date.today-7).strftime("%Y年%-m月%-d日") %>から<%= (Date.today-1).strftime("%Y年%-m月%-d日") %>まで</p>
   <div class="row justify-content-center", style="background-color:#eee;">
     <div class="col-md-6", style="background-color:white;">
         <h2><span class="lgtm">23</span><%= link_to "タイトル" %></h2>
