@@ -8,7 +8,9 @@ class ItemsController < ApplicationController
 
     # params = URI.encode_www_form({created: >2022-1-31})
     # 日付を仮定
-    params = "2022-1-31"
+    today = Date.today
+    params = (today - 7).strftime
+    # params = "2022-1-31"
     uri = URI.parse("https://qiita.com/api/v2/items?page=1&per_page=3&query=created:>#{params}")
     response = Net::HTTP.get_response(uri)
     result = JSON.parse(response.body)
