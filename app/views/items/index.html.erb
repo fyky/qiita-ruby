@@ -1,10 +1,9 @@
 <div class="container", style="background-color:#e6e6fa;">
-<h1>Qiita LGTM数ランキング</h1>
-<p>※直近1週間に投稿されたもの</p>
+<h1>Qiita記事 LGTM数週間ランキング</h1>
 <p>集計期間<%= (Date.today-7).strftime("%Y年%-m月%-d日") %>から<%= (Date.today-1).strftime("%Y年%-m月%-d日") %>まで</p>
-  <div class="row justify-content-center", style="background-color:#ff6699;">
-    <div class="col-md-6", style="background-color:#eee;">
-        <h2><span class="lgtm">LGTM数</span>タイトル</h2>
+  <div class="row justify-content-center", style="background-color:#eee;">
+    <div class="col-md-6", style="background-color:white;">
+        <h2><span class="lgtm">23</span><%= link_to "タイトル" %></h2>
           <div class="item_text">
             <div style="text-align:right;">
               <button class="tag">タグ</button>
@@ -15,7 +14,7 @@
             posted_by: なまえ
           </div>
 
-        <h2><span class="lgtm">LGTM数</span>タイトル</h2>
+        <h2><span class="lgtm">LGTM数</span><%= link_to "タイトル" %></h2>
           <div class="item_text">
             <div style="text-align:right;">
               <button class="tag">タグ</button>
@@ -26,7 +25,7 @@
             posted_by: なまえ
           </div>
 
-        <h2><span class="lgtm">LGTM数</span>タイトル</h2>
+        <h2><span class="lgtm">LGTM数</span><%= link_to "タイトル" %></h2>
           <div class="item_text">
             <div style="text-align:right;">
               <button class="tag">タグ</button>
