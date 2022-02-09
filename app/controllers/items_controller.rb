@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-
-
   def index
     # つけないと動かない　なぜ
     require 'net/http'
@@ -11,10 +9,21 @@ class ItemsController < ApplicationController
     today = Date.today
     params = (today - 7).strftime
     # params = "2022-1-31"
-    uri = URI.parse("https://qiita.com/api/v2/items?page=1&per_page=3&query=created:>#{params}")
-    response = Net::HTTP.get_response(uri)
-    result = JSON.parse(response.body)
+    # uri = URI.parse("https://qiita.com/api/v2/items?page=1&per_page=3&query=created:>#{params}")
+    # response = Net::HTTP.get_response(uri)
+    # result = JSON.parse(response.body)
+    # p result
 
+
+    result = []
+    for i in 1..3 do
+      uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=2&query=created:>#{params}")
+      response = Net::HTTP.get_response(uri)
+      result << JSON.parse(response.body)
+    end
+    p result.size
+
+    # ページ数＝配列＝size
 
     # resultは配列　itemがたくさん入っている　
     # 配列がなくなるまで繰り返し表示させる必要がある
@@ -23,28 +32,50 @@ class ItemsController < ApplicationController
     # puts @test
 
     @items = []
+    # binding.irb
+    # for i in 0..@test.size do
+    # end
 
+    # for f in 0..2 do
+    # これで動く？
+    # end
+    for f in 0..(@test[0].size-1) do
       for val in @test do
-        # no implicit でエラーが出たので修正必要
-        @title = "#{val["title"]}"
-        @lgtm = "#{val["likes_count"]}"
-        @created_at =  "#{val["created_at"]}"
-        @name =  "#{val["user"]["name"]}"
-        @tag = val["tags"]
-          # p @tag
+        @title = val[f]["title"]
+        @lgtm = val[f]["likes_count"]
+        @created_at = val[f]["created_at"]
+        @name = val[f]["user"]["name"]
+        @tag = val[f]["tags"]
           @tag_names= []
           # each文で回したいので配列で取得する
           @tag.each { |t|
             @tag_name = t["name"]
             @tag_names.append(@tag_name)
           }
-          # p @tag_names
-        # p "tagは" + @tag
         @items.append(@title,@lgtm,@created_at,@name,@tag_names)
+          # p @tag_names
+
+        # # no implicit でエラーが出たので修正必要 数値がくるべきところに文字がきた
+        # @title = val[f]["title"]
+        # @lgtm = "#{val[f]["likes_count"]}"
+        # @created_at =  "#{val[f]["created_at"]}"
+        # @name =  "#{val[f]["user"]["name"]}"
+        # @tag = val[f]["tags"]
+        #   # p @tag
+        #   @tag_names= []
+        #   # each文で回したいので配列で取得する
+        #   @tag.each { |t|
+        #     @tag_name = t["name"]
+        #     @tag_names.append(@tag_name)
+        #   }
+        #   # p @tag_names
+        # # p "tagは" + @tag
+        # @items.append(@title,@lgtm,@created_at,@name,@tag_names)
       end
+    end
       # p "配列の中身は" + @items.to_s
       @all_items = @items.each_slice(5).to_a
-      # p @all_items
+      p @all_items
 
     # # 1個目のみ
     # @title = result[0]["title"]
@@ -61,27 +92,5 @@ class ItemsController < ApplicationController
     #   @tag_names.append(@tag_name)
     # }
     # p @tag_names
-
-    # # for i in @tag do
-    # #   @tag
-    # #   @tags.append
-    # # end
-
-    # # for tag in result[0]["tags"] do
-    # #   puts tag
-    # # end 
-
-    # @title2 = result[1]["title"]
-    # @name2= result[1]["user"]["name"]
-    # @created_at2 = result[1]["created_at"]
-    # @lgtm2 = result[1]["likes_count"]
-
-    # @title3 = result[2]["title"]
-    # @name3= result[2]["user"]["name"]
-    # @created_at3 = result[2]["created_at"]
-    # @lgtm3 = result[2]["likes_count"]
-    # # :
-    # # :
-    
   end
 end

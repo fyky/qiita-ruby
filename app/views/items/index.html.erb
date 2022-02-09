@@ -1,29 +1,21 @@
-<h1>items一覧表示ページ</h1>
-<h2>直近1週間の投稿を取得、LGTM数の高い順に並び替え</h2>
+<div class="container">
+  <h1>Qiita記事 LGTM数週間ランキング</h1>
+  <p>集計期間 : <%= (Date.today-7).strftime("%Y年%-m月%-d日") %>から<%= (Date.today-1).strftime("%Y年%-m月%-d日") %>まで</p>
+    <div class="row justify-content-center", style="background-color:#eee;">
+      <div class="col-md-6", style="background-color:white;">
+        <% @all_items.each do |i| %>
+          <h2><span class="lgtm"><%= i[1] %></span><%= link_to "#{i[0]}" %></h2>
 
-<% @all_items.each do |i| %>
-  <h3>タイトルだけ</h3>
-    <%= i[0] %>
-  <h3>いいねカウントだけ</h3>
-    <%= i[1] %>
-  <h3>日付だけ</h3>
-    <%= i[2] %>
-  <h3>投稿者名だけ</h3>
-    <%= i[3] %>
-      <%#= i.each do |youso| %>
-    <%#= youso %>
-  <%# end %>
-  <h3>タグ</h3>
-  <% i[4].each do |tag| %>
-    <%= tag %>
-  <% end %>
-<% end %>
-
-
-
-
-
-<h3>タグ：</h3>
-<% @tag_names.each do |tag| %>
-  <%= tag %>
-<% end %>
+          <div class="item_text">
+            <div style="text-align:right;">
+              <% i[4].each do |tag| %>
+                <button class="tag"><%= tag %></button>
+              <% end %>
+            </div>
+            created_at : <%= i[2] %><br>
+            name : <%= i[3] %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>

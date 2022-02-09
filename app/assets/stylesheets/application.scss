@@ -1,0 +1,87 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Zen+Kaku+Gothic+Antique&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Alata", sans-serif;
+  font-family: "Zen Kaku Gothic Antique", sans-serif;
+}
+
+a {
+  color: #a52a2a;
+  border: none;
+}
+
+a:hover {
+  color: #eee;
+  border: none;
+}
+
+a:visited {
+  color: black;
+  border: none;
+}
+
+.lgtm {
+  display: inline-block;
+  width: 100px;
+  height: 85px;
+  // background-color: #b0c4de;
+  background-image: image-url("lgtm.png");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  border: 3px solid green;
+  // border-radius: 50%;
+  text-align: center;
+  padding-top: 35px;
+  margin-right: 20px;
+  border: none;
+  color: black;
+  font-size: 25px;
+}
+
+h2 {
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.text {
+  padding-left: 20px;
+}
+
+.item_text {
+  padding-left: 100px;
+  margin-bottom: 30px;
+}
+
+footer {
+  text-align: center;
+}
+
+.tag {
+  border: 1px solid #666666;
+  background-color: #333333;
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+}
