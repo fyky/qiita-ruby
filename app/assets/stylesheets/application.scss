@@ -25,21 +25,26 @@
 body {
   font-family: "Alata", sans-serif;
   font-family: "Zen Kaku Gothic Antique", sans-serif;
+  border: none;
 }
 
 a {
   color: #a52a2a;
-  border: none;
+  text-decoration: none;
 }
 
 a:hover {
   color: #eee;
-  border: none;
+  text-decoration: none;
 }
 
 a:visited {
   color: black;
-  border: none;
+  text-decoration: none;
+}
+
+header {
+  padding: 20px 0px 10px 30px;
 }
 
 .lgtm {
@@ -54,15 +59,34 @@ a:visited {
   // border-radius: 50%;
   text-align: center;
   padding-top: 35px;
-  margin-right: 20px;
+  // margin-right: 20px;
   border: none;
   color: black;
   font-size: 25px;
+  font-weight: bold;
+}
+
+h1 {
+  display: inline-block;
+  background: linear-gradient(transparent 70%, #d4d663 70%);
 }
 
 h2 {
-  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
   text-align: left;
+}
+
+h5 {
+  margin-bottom: 15px;
+}
+
+.btn-tag {
+  color: var(--bs-white);
+  background-color: #696969;
+  border: 1px solid #696969;
+  padding: 5px;
+  font-size: 11px;
 }
 
 .text {
@@ -78,10 +102,44 @@ footer {
   text-align: center;
 }
 
-.tag {
-  border: 1px solid #666666;
-  background-color: #333333;
-  color: white;
-  padding: 5px;
-  font-size: 12px;
+// kaminari
+.pagination > li > a {
+  border: none;
+  color: #696969;
 }
+
+.pagination > .active > a {
+  background-color: #d4d663 !important;
+  // border-radius: 15px;
+}
+
+// kaminari hover
+.pagination > li > a:hover {
+  color: #fff;
+}
+
+.pagination li {
+  background-color: white;
+  border: 1px solid #666;
+}
+
+.pagination li {
+  background-color: #666;
+}
+
+.current {
+  background-color: green;
+}
+
+// .accordion-item {
+//   background-color: #eee;
+// }
+
+.accordion-body {
+  font-size: 14px;
+}
+
+// .accordion-button.collapsed {
+//   color: white;
+//   background: blue;
+// }

@@ -51,6 +51,6 @@ class ItemsController < ApplicationController
       liked_all_items = set_items.reverse
 
       # ページネーション
-      @all_items = Kaminari.paginate_array(liked_all_items).page(params[:page]).per(20)
+      @all_items = Kaminari.paginate_array(liked_all_items).page(params[:page]).per(10)
   end
 end
