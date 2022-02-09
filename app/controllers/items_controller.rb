@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
       result << JSON.parse(res.read)
       i += 1
     end
+    # p result
 
     # items[]に全てのデータを格納
     items = []
@@ -33,18 +34,19 @@ class ItemsController < ApplicationController
           created_at = val[f]["created_at"]
           name = val[f]["user"]["name"]
           tag = val[f]["tags"]
+          id = val[f]["user"]["id"]
             tag_names= []
             # each文で回して取得する
             tag.each { |t|
               tag_name = t["name"]
               tag_names.append(tag_name)
             }
-          items.append(title,url,lgtm,created_at,name,tag_names)
+          items.append(title,url,lgtm,created_at,name,tag_names,id)
         end
       end
     end
       # itemsから1セット（6つのデータ）ずつ切り分けて格納
-      set_items = items.each_slice(6).to_a
+      set_items = items.each_slice(7).to_a
       # 要素3つ目(lgtm数で並び替え)
       set_items.sort_by! { |a| a[2] }
       # lgtm数の多い順に表示
