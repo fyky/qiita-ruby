@@ -15,26 +15,13 @@ class ItemsController < ApplicationController
     result = []
     # # 1~3ページ目まで回す
     i = 1
-    while i <= 2 do
+    while i <= 10 do
     # for i in 1..100 do
       uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=2&query=created:>#{params}")
       res = URI.open(uri, headers)
       result << JSON.parse(res.read)
       i += 1
-      # response = Net::HTTP.get_response(uri, headers)
-      # result << JSON.parse(response.body)
-      # i += 1
-      # result << JSON.parse(uri.read)
     end
-
-    # binding.irb
-    # p result.size
-    # result = [[{"title"=>"タイトル"},{"lgtm"=>"10"},{"user"=>{"name"=>"uu"}},{"created_at"=>"x"},{"tag"=>"y"}],
-    # [{"title"=>"タイトル"},{"lgtm"=>"10"},{"user"=>{"name"=>"uu"}},{"created_at"=>"x"},{"tag"=>"y"}],
-    # [{"title"=>"タイトル"},{"lgtm"=>"10"},{"user"=>{"name"=>"uu"}},{"created_at"=>"x"},{"tag"=>"y"}]]
-    # p result[0]["user"]["name"]
-
-    # ページ数＝配列＝size
 
     @items = []
     # binding.irb
@@ -59,8 +46,16 @@ class ItemsController < ApplicationController
       end
     end
       @all_items = @items.each_slice(6).to_a
-      # .page(params[:page]).per(3)
-      p @all_items
+      # @all_itemss = @items.each_slice(6).to_a.sort[2]
+      # p @all_items
+      @all_items.sort_by! { |a| a[2] }
+      @liked_all_items = @all_items.reverse
+
+      # order("liked_at": :DESC)
+      # p @all_items
+      # @allitemss = @all_items.page(params[:page]).per(1)
+      # @all_itemss = Kaminari.paginate_array(@items).page(params[:page]).per(1)
+      # p @items
 
   end
 end
