@@ -23,7 +23,7 @@
               <% end %>
             </div>
             created_at : <%= i[3].to_datetime.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %><br>
-            name : <%= i[4] %>
+            name : <%= i[4] %> <span style="color: #666;"><%= "@#{i[6]}" %></span>
           </div>
 
         <% end %>
