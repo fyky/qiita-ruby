@@ -4,18 +4,19 @@
     <div class="row justify-content-center", style="background-color:#eee;">
       <div class="col-md-6", style="background-color:white;">
         <% @all_items.each do |i| %>
-          <h2><span class="lgtm"><%= i[1] %></span><%= link_to "#{i[0]}" %></h2>
+          <h2><span class="lgtm"><%= i[2] %></span><%= link_to "#{i[0]}", "#{i[1]}" %></h2>
 
           <div class="item_text">
             <div style="text-align:right;">
-              <% i[4].each do |tag| %>
+              <% i[5].each do |tag| %>
                 <button class="tag"><%= tag %></button>
               <% end %>
             </div>
-            created_at : <%= i[2] %><br>
-            name : <%= i[3] %>
+            created_at : <%= i[3] %><br>
+            name : <%= i[4] %>
           </div>
         <% end %>
       </div>
     </div>
+    <%#= paginate @all_items %>
 </div>
