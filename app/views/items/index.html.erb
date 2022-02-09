@@ -3,7 +3,7 @@
   <p>集計期間 : <%= (Date.today-7).strftime("%Y年%-m月%-d日") %>から<%= (Date.today-1).strftime("%Y年%-m月%-d日") %>まで</p>
     <div class="row justify-content-center", style="background-color:#eee;">
       <div class="col-md-6", style="background-color:white;">
-        <% @all_itemss.each do |i| %>
+        <% @all_items.each do |i| %>
           <h2><span class="lgtm"><%= i[2] %></span>
           <%= link_to "#{i[0]}", "#{i[1]}", target: :_blank, rel: "noopener noreferrer" %></h2>
 
@@ -21,5 +21,5 @@
       </div>
     </div>
 
-    <%= paginate @all_itemss %>
+    <%= paginate @all_items %>
 </div>
