@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
     today = Date.today
     # 1週間前の日付を取得
-    params = (today - 7).strftime
+    params2 = (today - 7).strftime
 
     # アクセストークン
     access_token = ENV['access_token']
@@ -15,9 +15,9 @@ class ItemsController < ApplicationController
     result = []
     # # 1~3ページ目まで回す
     i = 1
-    while i <= 10 do
+    while i <= 100 do
     # for i in 1..100 do
-      uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=2&query=created:>#{params}")
+      uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=100&query=created:>#{params2}")
       res = URI.open(uri, headers)
       result << JSON.parse(res.read)
       i += 1
@@ -50,11 +50,37 @@ class ItemsController < ApplicationController
       # p @all_items
       @all_items.sort_by! { |a| a[2] }
       @liked_all_items = @all_items.reverse
+      # @liked_all_items = Kaminari.paginate_array(@liked_all_items).page(1).per(2)
 
       # order("liked_at": :DESC)
-      # p @all_items
-      # @allitemss = @all_items.page(params[:page]).per(1)
-      # @all_itemss = Kaminari.paginate_array(@items).page(params[:page]).per(1)
+      # @all_itemsss = @items.each_slice(6)
+      # p @all_itemsss
+      # binding.irb
+      # p @liked_all_items[0]
+
+      @array2 = []
+      @liked_all_items.each do |f|
+        @array2.push({
+          title: f[0],
+          url: f[1],
+          lgtm: f[2],
+          created_at: f[3],
+          name: f[4],
+          tag: f[5]
+        })
+      end
+      # @array3 = @array2.each_slice(6).to_a
+      # p @array2.each_slice(6).to_a
+
+      # @allitemss = @array2.page(params[:page]).per(1)
+      # for N in 0..3 do
+
+      # p @items.each_slice(6)
+  # binding.irb
+        @all_itemss = Kaminari.paginate_array(@liked_all_items).page(params[:page]).per(20)
+        # p @all_itemss
+      # end
+
       # p @items
 
   end
