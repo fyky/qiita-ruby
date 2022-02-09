@@ -68,3 +68,5 @@ gem 'jquery-rails'
 gem 'kaminari'
 # 環境変数
 gem 'dotenv-rails'
+# Bootstrap kaminari
+gem 'bootstrap5-kaminari-views'

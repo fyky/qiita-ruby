@@ -14,8 +14,8 @@ class ItemsController < ApplicationController
     # pageを回して配列でデータを取得
     result = []
     i = 1
-    while i <= 100 do
-      uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=100&query=created:>#{params_date}")
+    while i <= 2 do
+      uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=10&query=created:>#{params_date}")
       res = URI.open(uri, headers)
       result << JSON.parse(res.read)
       i += 1
@@ -51,6 +51,6 @@ class ItemsController < ApplicationController
       liked_all_items = set_items.reverse
 
       # ページネーション
-      @all_items = Kaminari.paginate_array(liked_all_items).page(params[:page]).per(20)
+      @all_items = Kaminari.paginate_array(liked_all_items).page(params[:page]).per(10)
   end
 end

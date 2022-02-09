@@ -10,7 +10,7 @@
           <div class="item_text">
             <div style="text-align:right;">
               <% i[5].each do |tag| %>
-                <button class="tag"><%= tag %></button>
+                <button type="button" class="btn-tag" disabled><%= tag %></button>
               <% end %>
             </div>
             created_at : <%= i[3].to_datetime.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %><br>
@@ -21,5 +21,9 @@
       </div>
     </div>
 
-    <%= paginate @all_items %>
+    <div class="row justify-content-center">
+      <div class="col-md-3 col-md-offset-5">
+        <%= paginate @all_items, theme: 'bootstrap-5' %>
+      </div>
+    </div>
 </div>
