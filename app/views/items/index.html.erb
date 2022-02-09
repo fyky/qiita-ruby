@@ -4,7 +4,8 @@
     <div class="row justify-content-center", style="background-color:#eee;">
       <div class="col-md-6", style="background-color:white;">
         <% @liked_all_items.each do |i| %>
-          <h2><span class="lgtm"><%= i[2] %></span><%= link_to "#{i[0]}", "#{i[1]}" %></h2>
+          <h2><span class="lgtm"><%= i[2] %></span>
+          <%= link_to "#{i[0]}", "#{i[1]}", target: :_blank, rel: "noopener noreferrer" %></h2>
 
           <div class="item_text">
             <div style="text-align:right;">
@@ -12,7 +13,7 @@
                 <button class="tag"><%= tag %></button>
               <% end %>
             </div>
-            created_at : <%= i[3] %><br>
+            created_at : <%= i[3].to_datetime.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %><br>
             name : <%= i[4] %>
           </div>
     <%= @all_itemss %>
