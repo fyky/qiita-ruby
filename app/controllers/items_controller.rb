@@ -14,8 +14,8 @@ class ItemsController < ApplicationController
     # pageを回して配列でデータを取得
     result = []
     i = 1
-    while i <= 100 do
-      uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=100&query=created:>#{params_date}")
+    while i <= 1 do
+      uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=2&query=created:>#{params_date}")
       res = URI.open(uri, headers)
       result << JSON.parse(res.read)
       i += 1
@@ -42,6 +42,8 @@ class ItemsController < ApplicationController
               tag_names.append(tag_name)
             }
           items.append(title,url,lgtm,created_at,name,tag_names,id)
+          # items.create(:title => title)
+          # (title: title,url: url,lgtm: lgtm,user_name: name, posted_at: created_at, tag: tag_names, qiita_id: id)
         end
       end
     end
@@ -55,4 +57,17 @@ class ItemsController < ApplicationController
       # ページネーション
       @all_items = Kaminari.paginate_array(liked_all_items).page(params[:page]).per(10)
   end
+
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to "/"
+    end
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:title)
+  end
+
 end

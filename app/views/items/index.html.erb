@@ -9,7 +9,14 @@
           <p>2022/2/2〜2022/2/8</p>
           <p>2022/2/2〜2022/2/8</p>
           <p>2022/2/2〜2022/2/8</p>-->
+
+        <%= form_with model: Item.new, url: items_path, method: :post, local:true do |f| %>
+          <%= f.hidden_field :title, value: "タイトル" %>
+          <%= f.submit "取得" %>
+        <% end %>
       </div>
+
+
 
       <div class="col-md-10", style="background-color:white; border:1px solid #eee;">
         <% @all_items.each do |i| %>
