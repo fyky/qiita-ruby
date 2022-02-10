@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :user_name
       t.datetime :posted_at
       t.string :tag
-      t.integer :qiita_id
+      t.string :qiita_id
 
       t.timestamps
     end

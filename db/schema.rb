@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_152821) do
     t.string "user_name"
     t.datetime "posted_at"
     t.string "tag"
-    t.integer "qiita_id"
+    t.string "qiita_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

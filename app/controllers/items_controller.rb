@@ -7,7 +7,8 @@ class ItemsController < ApplicationController
   def create
     # all_itemsで上位10件を取得
     @all_items.first(10).each do |a, b, c, d, e, f, g|
-      Item.create(title: a, url: b, lgtm: c, user_name: d, posted_at: e, tag: f, qiita_id: g)
+      # p g
+      Item.create(title: a, url: b, lgtm: c, user_name: e, posted_at: d, tag: f, qiita_id: g)
     end
     redirect_back(fallback_location: root_path)
   end
@@ -28,8 +29,8 @@ class ItemsController < ApplicationController
       # pageを回して配列でデータを取得
       result = []
       i = 1
-      while i <= 1 do
-        uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=2&query=created:>#{params_date}")
+      while i <= 100 do
+        uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=100&query=created:>#{params_date}")
         res = URI.open(uri, headers)
         result << JSON.parse(res.read)
         i += 1
@@ -59,7 +60,7 @@ class ItemsController < ApplicationController
           end
         end
       end
-        # itemsから1セット（6つのデータ）ずつ切り分けて格納
+        # itemsから1セット（7つのデータ）ずつ切り分けて格納
         set_items = items.each_slice(7).to_a
         # 要素3つ目(lgtm数で並び替え)
         set_items.sort_by! { |a| a[2] }
