@@ -1,19 +1,22 @@
 class ItemsController < ApplicationController
   before_action :get_data
-  
+
   def index
   end
 
   def create
-
+    # all_itemsで上位10件を取得
+    @all_items.first(10).each do |a, b, c, d, e, f, g|
+      Item.create(title: a, url: b, lgtm: c, user_name: d, posted_at: e, tag: f, qiita_id: g)
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   private
     def get_data
       require 'net/http'
       require 'open-uri'
-      # @name2 = Kaminari.paginate_array(@liked_all_items).page(params[:page]).per(10)
-      # @name2 = [["【Kuberntes】WorkerNodeが乗っ取られてもNodeRestrictionをONにしてれば大丈夫", "https://qiita.com/mti_tw/items/31db93798d776f384c9e", 0, "2022-02-10T14:00:43+09:00", "", ["kubernetes"], "mti_tw"], ["Autonomous Database と APEX で BIデータ更新アプリ をクイックに作成する", "https://qiita.com/yama6/items/d6b250f87ac865cde32a", 0, "2022-02-10T14:05:05+09:00", "", ["Apex", "oci", "AutonomousDatabase"], "yama6"]]
+
       today = Date.today
       # 1週間前の日付を取得
       params_date = (today - 7).strftime
@@ -53,8 +56,6 @@ class ItemsController < ApplicationController
                 tag_names.append(tag_name)
               }
             items.append(title,url,lgtm,created_at,name,tag_names,id)
-            # items.create(:title => title)
-            # (title: title,url: url,lgtm: lgtm,user_name: name, posted_at: created_at, tag: tag_names, qiita_id: id)
           end
         end
       end
