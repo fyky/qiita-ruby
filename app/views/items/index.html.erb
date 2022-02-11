@@ -1,9 +1,9 @@
 <div class="container">
   <p><b>集計期間 : <%= (Date.today-7).strftime("%Y年%-m月%-d日") %> 0時0分から<%= Time.now.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %>まで</b></p>
     <div class="row justify-content-center", style="background-color:#eee;">
-      <div class="col-md-2", style="padding:20px;">
-        <h5>過去のランキング</h5>
-          <p>1週間ごと</p>
+      <div class="col-md-2", style="padding:20px 0 20px 10px;">
+        <!--h5>過去のランキング</!--h5>
+          <!--p>1週間ごと</!--p>
 
           <!--p>2022/2/2〜2022/2/8</！p>
           <p>2022/2/2〜2022/2/8</p>
@@ -14,7 +14,7 @@
 
         <%= form_with model: Item.new, url: items_path, method: :post, local:true do |f| %>
           <%#= f.hidden_field :title, value: "タイトル" %>
-          <%= f.submit "上位10件のデータを保存する" %>
+          <%= f.submit "上位10件のデータを保存", class: "btn btn-outline-dark" %>
         <% end %>
       </div>
 
