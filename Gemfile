@@ -70,3 +70,5 @@ gem 'kaminari'
 gem 'dotenv-rails'
 # Bootstrap kaminari
 gem 'bootstrap5-kaminari-views'
+# バッチ
+gem "whenever"
