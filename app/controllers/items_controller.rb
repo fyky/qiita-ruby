@@ -2,12 +2,12 @@ class ItemsController < ApplicationController
   before_action :get_data
 
   def index
+    # 10件ずつ扱う
     @items = Item.all.each_slice(10)
   end
 
   def create
-    # 一度リロードしてから保存させる処理
-
+    # バッチ　リロードしたらすぐ保存
 
     # all_itemsで上位10件を取得
     @all_items.first(10).each do |a, b, c, d, e, f, g|
@@ -19,30 +19,10 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # @back_number = 1*
-    # @first = params[:id].to_i
-    # @items = Item.where(id: @first..(@first+9))
-    # @items_first = Item.find_by(id: 1..10)
-    
-    # 1が来たら1~10
-    # 2が来たら11~20 2*10-9~2*10
-    # 3が来たら21~30 3*10-9~3*10
     @first = params[:id].to_i
-    # params[:id].to_i
+    # 10件を取得
     @items = Item.where(id: @first..(@first+9))
     @items_first = Item.find(@first)
-
-    # @arl = Item.all
-    # # p @arl.size
-    # count = [1]
-    # i = 1
-    # while i <= 1 do
-    #     i = i+10
-    #     @items = Item.where(id: i..(i+9))
-
-    #   count.append(i)
-    # end
-    # p count
   end
 
   private
@@ -61,8 +41,8 @@ class ItemsController < ApplicationController
       # pageを回して配列でデータを取得
       result = []
       i = 1
-      while i <= 2 do
-        uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=10&query=created:>#{params_date}")
+      while i <= 100 do
+        uri = URI.parse("https://qiita.com/api/v2/items?page=#{i}&per_page=100&query=created:>#{params_date}")
         res = URI.open(uri, headers)
         result << JSON.parse(res.read)
         i += 1
