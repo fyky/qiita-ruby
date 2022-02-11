@@ -2,6 +2,7 @@ require "#{Rails.root}/app/models/item"
 
 class Tasks::Itemsavetask
   def self.save
-    puts "成功"
+    p "こんにちは"
+    # Item.create(title: "テスト")
   end
 end
