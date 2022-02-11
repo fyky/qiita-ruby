@@ -1,15 +1,18 @@
 <div class="container">
   <p><b>集計期間 : <%= (Date.today-7).strftime("%Y年%-m月%-d日") %> 0時0分から<%= Time.now.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %>まで</b></p>
     <div class="row justify-content-center", style="background-color:#eee;">
-      <div class="col-md-2", style="padding:20px;">
-        <h5>過去のランキング</h5>
-          <p>1週間ごと</p>
-          <!--p>2022/2/2〜2022/2/8</！p>
-          <p>2022/2/2〜2022/2/8</p>
-          <p>2022/2/2〜2022/2/8</p>
-          <p>2022/2/2〜2022/2/8</p>
-          <p>2022/2/2〜2022/2/8</p>
-          <p>2022/2/2〜2022/2/8</p>-->
+      <div class="col-md-2", style="padding:20px 0 20px 10px;">
+        <%= link_to('リロード', 'javascript:void(0);', onclick: "window.location.reload();", class: "btn btn-danger")  %>
+        <br><br>
+        <%= form_with model: [Item.new, User.new], url: items_path, method: :post, local:true do |f| %>
+          <%#= f.hidden_field :title, value: "タイトル" %>
+          <%= f.submit "上位10件のデータを保存", class: "btn btn-outline-dark" %>
+        <% end %>
+
+        <% @items.each do |item| %>
+          <%#= item[0].id %>
+        <p><%= link_to "#{item[0].created_at.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒")}", item_path(item[0].id) %></p>
+        <% end %>
       </div>
 
       <div class="col-md-10", style="background-color:white; border:1px solid #eee;">

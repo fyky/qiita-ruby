@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>バックナンバー(上位10件）</h2>
+  <div class="row justify-content-center", style="background-color:#eee;">
+  <div class="col-md-10", style="background-color:white; border:1px solid #eee;">
+      <h3>集計期間：
+        <%= (@items_first.created_at.to_date-7).strftime("%Y年%-m月%-d日") %>0時0分0秒から
+        <%= @items_first.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %></h3>
+
+      <% @items.each do |f| %>
+        <h2><span class="lgtm"><%= f.lgtm %></span>
+        <%= link_to "#{f.title}", f.url, target: :_blank, rel: "noopener noreferrer" %></h2>
+        <div class="item_text">
+          created_at : <%= f.posted_at.to_datetime.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %><br>
+          name : <%= f.user_name %> <span style="color: #666;"><%= "@#{f.qiita_id}" %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
