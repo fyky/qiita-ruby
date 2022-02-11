@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2022_02_09_152821) do
 
   create_table "items", force: :cascade do |t|
-    t.integer "user_id"
     t.string "title"
     t.string "url"
     t.integer "lgtm"
@@ -25,9 +24,9 @@ ActiveRecord::Schema.define(version: 2022_02_09_152821) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: false, force: :cascade do |t|
+    t.string "qiita_id"
     t.string "name"
-    t.integer "qiita_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
