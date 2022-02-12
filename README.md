@@ -1,24 +1,19 @@
-# README
+# Qiita API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Qiitaの記事をリアルタイムで取得できるページ（ほぼ1週間)
+- 集計期間…7日前〜現在まで（ほぼ1週間）
+- LGTM数の多い順に表示
+- ワンクリックで、その時点での上位10件を保存でき、バックナンバーで見返せる
 
-Things you may want to cover:
+### モデル
+- Item => 記事タイトル、リアクション(LGTM)数、投稿者名、ユーザーID（qiita_id）、作成日時、タグ
+- User => ユーザーID（qiita_id）、名前
 
-* Ruby version
+### 今後実装したいこと
+- 定時処理（毎日0:00に、前日までの1週間のLGTM数ランキング上位10位を取得、モデルに保存）
+- ユーザーランキング（ランクインした数が多いユーザー上位3名を表示）
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### gem
+- Bootstrap5（デザインまわり）
+- gem kaminari（ページネーション）
+- gem 'dotenv-rails'（環境変数）
