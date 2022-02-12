@@ -13,7 +13,10 @@ class ItemsController < ApplicationController
     @all_items.first(10).each do |a, b, c, d, e, f, g|
       # p g
       Item.create(title: a, url: b, lgtm: c, user_name: e, posted_at: d, tag: f, qiita_id: g)
-      User.create(qiita_id: g, name: e)
+      # すでにユーザーが存在していたらItemのみを保存する
+      unless User.exists?(qiita_id: g)
+        User.create(qiita_id: g, name: e)
+      end
     end
     redirect_back(fallback_location: root_path)
   end

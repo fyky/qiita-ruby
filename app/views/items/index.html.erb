@@ -6,9 +6,10 @@
         <br><br>
         <%= form_with model: [Item.new, User.new], url: items_path, method: :post, local:true do |f| %>
           <%#= f.hidden_field :title, value: "タイトル" %>
-          <%= f.submit "上位10件のデータを保存", class: "btn btn-outline-dark" %>
+          <%= f.submit "上位10件のデータを保存", onclick: "window.location.reload();", class: "btn btn-outline-dark" %>
         <% end %>
 
+        <h5>バックナンバー一覧<br>(※取得日)</h5>
         <% @items.each do |item| %>
           <%#= item[0].id %>
         <p><%= link_to "#{item[0].created_at.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒")}", item_path(item[0].id) %></p>
