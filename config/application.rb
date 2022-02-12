@@ -19,6 +19,7 @@ module QiitaRuby
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
 
+
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.eager_load_paths += Dir["#{config.root}/lib/**/"]
   end

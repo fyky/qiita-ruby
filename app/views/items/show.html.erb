@@ -10,7 +10,7 @@
         <h2><span class="lgtm"><%= f.lgtm %></span>
         <%= link_to "#{f.title}", f.url, target: :_blank, rel: "noopener noreferrer" %></h2>
         <div class="item_text">
-          created_at : <%= f.posted_at.to_datetime.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %><br>
+          created_at : <%= f.posted_at.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %><br>
           name : <%= f.user_name %> <span style="color: #666;"><%= "@#{f.qiita_id}" %></span>
         </div>
       <% end %>

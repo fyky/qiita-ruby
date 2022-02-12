@@ -1,0 +1,5 @@
+<% @users.uniq.each do |f| %>
+  <div>
+    <%= f.qiita_id %>のランキングに入った数は<%= Item.where(qiita_id: f.qiita_id).count %>
+  </div>
+<% end %>
