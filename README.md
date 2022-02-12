@@ -7,7 +7,7 @@
 - ワンクリックで、その時点での上位10件を保存でき、バックナンバーで見返せる
 - Qiita APIv2を利用
 
-<img width="1411" alt="スクリーンショット 2022-02-12 18 07 51" src="https://user-images.githubusercontent.com/91657176/153705066-965b295a-3eb9-4bd0-92a1-c6eacc6c1cd3.png">
+<img width="1411" alt="スクリーンショット 2022-02-12 18 49 04" src="https://user-images.githubusercontent.com/91657176/153706343-6b6a732a-104c-45f9-be97-fde72344f2aa.png">
 
 
 ## モデル
