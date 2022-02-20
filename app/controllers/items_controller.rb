@@ -57,7 +57,8 @@ class ItemsController < ApplicationController
       # binding.irb
 
       # .mapで配列を生成し、そこに入れていく記述に修正
-      
+      # results = []
+      # results.map {|result|　値}
       for f in 0..(result[0].size-1) do
         for val in result do
           if val[f]
